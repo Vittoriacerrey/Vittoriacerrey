@@ -4,23 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style></style>
   </head>
   <body>
-    <h1>Hi im misheel</h1>
-    <style></style>
-    <button>get random quote</button>
+    <h1 id="quote"></h1>
+    <button onclick="getQuote()">get random quote</button>
     <script>
-      apiUrl = "https://api.quotable.io/random";
-      fetch(apiUrl, {
-        method: "GET",
-      })
-        .then((res) => re.json())
-        .then((data) => {
-          console.log(data);
+      function getQuote() {
+        apiUrl = "https://api.quotable.io/random";
+        fetch(apiUrl, {
+          method: "GET",
         })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            document.getElementById(
+              "quote"
+            ).innerHTML = `${data.content} - ${data.author}`;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      getQuote();
     </script>
   </body>
 </html>
